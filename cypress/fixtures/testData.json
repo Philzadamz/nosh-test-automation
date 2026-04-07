@@ -1,0 +1,41 @@
+{
+  "existingUser": {
+    "email": "theophilusinaede@gmail.com",
+    "password": "Philz1404865@#",
+    "fullName": "Theophilus Inaede"
+  },
+
+  "newUser": {
+    "fullName": "Test Nosh User",
+    "email": "testnoshuser@mailinator.com",
+    "password": "TestUser123@#",
+    "confirmPassword": "TestUser123@#",
+    "phoneNumber": "08012345678",
+    "country": "Nigeria",
+    "referralCode": ""
+  },
+
+  "giftCard": {
+    "category": "Amazon",
+    "subcategory": "Amazon USA",
+    "amount": "50",
+    "cardCode": "XXXX-XXXX-XXXX-XXXX",
+    "currency": "USD"
+  },
+
+  "wallet": {
+    "withdrawalAmount": "5000",
+    "bankName": "Access Bank",
+    "accountNumber": "1234567890"
+  },
+
+  "urls": {
+    "login": "/signin",
+    "signup": "/signup",
+    "dashboard": "/dashboard",
+    "giftCards": "/giftcards",
+    "wallet": "/wallet",
+    "transactions": "/transactions",
+    "profile": "/profile"
+  }
+}

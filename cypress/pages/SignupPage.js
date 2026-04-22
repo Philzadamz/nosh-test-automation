@@ -14,24 +14,24 @@ class SignupPage {
   }
 
   get emailInput() {
-    return cy.get('input[type="email"], input[name="name"]');
+    return cy.get('input[type="email"]');
   }
 
   get passwordInput() {
     // Target the first password field (not confirm password)
-    return cy.get('input[type="password"], input[name="password"]').first();
+    return cy.get('input[type="password"]').first();
   }
 
   get confirmPasswordInput() {
-    return cy.get('input[type="password"], input[name="confirmPassword"]');
+    return cy.get('input[name="confirmPassword"]');
   }
 
   get phoneNumberInput() {
-    return cy.get('input[type="number"], input[name="phoneNumber"]');
+    return cy.get('input[name="phoneNumber"]');
   }
 
   get termsCheckbox() {
-    return cy.get('input[type="checkbox"], input#customCheckbox');
+    return cy.get("input#customCheckbox").parent().find("button").first();
   }
 
   get signupButton() {
@@ -99,7 +99,7 @@ class SignupPage {
    * Check the terms and conditions checkbox
    */
   acceptTerms() {
-    this.termsCheckbox.check();
+    this.termsCheckbox.click();
   }
 
   /**

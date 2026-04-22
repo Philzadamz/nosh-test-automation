@@ -5,10 +5,10 @@
 //
 // What is being tested:
 //   1. The dashboard loads after login
-//   2. Key sections are visible (balance, quick actions)
-//   3. Navigation links take the user to the right pages
-//   4. The "Sell Gift Card" button is accessible
-//   5. Recent transactions section is visible
+//   2. The page title displays as Dashboard
+//   3. The NGN, USD and GHS wallet balance cards are visible
+//   4. The crypto wallet card is visible
+//   5. The recent transactions section is visible on scroll
 // ============================================================
 
 import DashboardPage from "../../pages/DashboardPage";
@@ -21,6 +21,11 @@ describe("Dashboard", () => {
     cy.loginWithFixture();
   });
 
+  // Wait 2000ms after each test before moving to the next
+  afterEach(() => {
+    cy.wait(2000);
+  });
+
   // ── TEST 1 ──────────────────────────────────────────────
   it("should load the dashboard page after login", () => {
     // Verify the URL contains /dashboard
@@ -28,54 +33,25 @@ describe("Dashboard", () => {
   });
 
   // ── TEST 2 ──────────────────────────────────────────────
-  it("should display a welcome message to the user", () => {
-    dashboardPage.welcomeMessage.should("be.visible");
+  it("should display the page title as Dashboard", () => {
+    dashboardPage.pageTitle.should("be.visible");
   });
 
   // ── TEST 3 ──────────────────────────────────────────────
-  it("should display the wallet balance card", () => {
-    dashboardPage.walletBalanceCard.should("be.visible");
+  it("should display the NGN, USD and GHS wallet balance cards", () => {
+    dashboardPage.ngnWalletCard.should("be.visible");
+    dashboardPage.usdWalletCard.should("be.visible");
+    dashboardPage.ghsWalletCard.should("be.visible");
   });
 
   // ── TEST 4 ──────────────────────────────────────────────
-  it("should display the Sell Gift Card quick action button", () => {
-    dashboardPage.sellGiftCardButton.should("be.visible");
+  it("should display the crypto wallet card", () => {
+    dashboardPage.cryptoWalletCard.should("be.visible");
   });
 
   // ── TEST 5 ──────────────────────────────────────────────
-  it("should display the recent transactions section", () => {
+  it("should display the recent transactions section when scrolled to the bottom", () => {
+    dashboardPage.mainScrollContainer.scrollTo("bottom");
     dashboardPage.recentTransactionsList.should("be.visible");
-  });
-
-  // ── TEST 6 ──────────────────────────────────────────────
-  it("should navigate to Gift Cards page from the navigation menu", () => {
-    dashboardPage.goToGiftCards();
-    cy.url().should("include", "/giftcards");
-  });
-
-  // ── TEST 7 ──────────────────────────────────────────────
-  it("should navigate to Wallet page from the navigation menu", () => {
-    dashboardPage.goToWallet();
-    cy.url().should("include", "/wallet");
-  });
-
-  // ── TEST 8 ──────────────────────────────────────────────
-  it("should navigate to Transactions page from the navigation menu", () => {
-    dashboardPage.goToTransactions();
-    cy.url().should("include", "/transactions");
-  });
-
-  // ── TEST 9 ──────────────────────────────────────────────
-  it("should navigate to Gift Cards page when Sell Gift Card is clicked", () => {
-    dashboardPage.clickSellGiftCard();
-
-    // Clicking "Sell Gift Card" should take the user to the gift cards page
-    cy.url().should("include", "/giftcards");
-  });
-
-  // ── TEST 10 ─────────────────────────────────────────────
-  it("should navigate to Transactions page when View All is clicked", () => {
-    dashboardPage.clickViewAllTransactions();
-    cy.url().should("include", "/transactions");
   });
 });

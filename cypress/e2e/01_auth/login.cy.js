@@ -32,6 +32,11 @@ describe("Login", () => {
     loginPage.visit();
   });
 
+  // Wait 1000ms after each test before moving to the next
+  afterEach(() => {
+    cy.wait(2000);
+  });
+
   // ── TEST 1 ──────────────────────────────────────────────
   it("should display the login page correctly", () => {
     // Verify the page URL is correct

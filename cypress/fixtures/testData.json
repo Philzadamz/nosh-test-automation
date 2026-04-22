@@ -23,6 +23,23 @@
     "currency": "USD"
   },
 
+  "sellGiftCard": {
+    "brand": "Best Buy",
+    "subcategory": "USA Best buy Physical Card",
+    "comment": "test automation"
+  },
+
+  "buyGiftCard": {
+    "country": "United States",
+    "brand": "Lowes",
+    "pin": "1960"
+  },
+
+  "localBills": {
+    "phoneNumber": "07062309274",
+    "pin": "1960"
+  },
+
   "wallet": {
     "withdrawalAmount": "5000",
     "bankName": "Access Bank",

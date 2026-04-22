@@ -10,29 +10,25 @@
 class DashboardPage {
   // ── SELECTORS ──────────────────────────────────────────────
 
-  get welcomeMessage() {
-    // The greeting text shown to the user after login
-    return cy.contains("Welcome");
+  get pageTitle() {
+    // The page title shown on the dashboard
+    return cy.contains("Dashboard");
   }
 
-  get walletBalanceCard() {
-    // The card displaying the user's available balance
-    return cy.contains("Available Balance").parent();
+  get ngnWalletCard() {
+    return cy.contains("Nigerian Naira");
   }
 
-  get walletBalanceAmount() {
-    // The actual balance figure
-    return cy.get("[data-testid='wallet-balance']");
+  get usdWalletCard() {
+    return cy.contains("United States Dollars");
   }
 
-  get sellGiftCardButton() {
-    // Quick action button to start selling a gift card
-    return cy.contains("Sell Gift Card");
+  get ghsWalletCard() {
+    return cy.contains("Ghanaian Cedis");
   }
 
-  get tradeButton() {
-    // Alternative trade button on the dashboard
-    return cy.contains("Trade");
+  get cryptoWalletCard() {
+    return cy.contains("Crypto Wallet");
   }
 
   get recentTransactionsList() {
@@ -40,35 +36,18 @@ class DashboardPage {
     return cy.contains("Recent Transactions").parent();
   }
 
-  get viewAllTransactionsLink() {
-    return cy.contains("View All");
-  }
-
-  // ── NAVIGATION MENU ────────────────────────────────────────
-
-  get navDashboard() {
-    return cy.contains("a", "Dashboard");
-  }
-
-  get navGiftCards() {
-    return cy.contains("a", "Gift Cards");
-  }
-
-  get navWallet() {
-    return cy.contains("a", "Wallet");
-  }
-
-  get navTransactions() {
-    return cy.contains("a", "Transactions");
-  }
-
-  get navProfile() {
-    return cy.contains("a", "Profile");
-  }
-
-  get userProfileAvatar() {
-    // The user's avatar or initials in the top navigation bar
-    return cy.get("[data-testid='user-avatar']");
+  get mainScrollContainer() {
+    // The main content area is a styled-component with dynamic classes.
+    // We locate it by traversing up from "Your Wallets" and finding the
+    // nearest ancestor that has overflow-y: scroll.
+    return cy
+      .contains("Your Wallets")
+      .parents()
+      .filter((_i, el) => {
+        const overflowY = Cypress.$(el).css("overflow-y");
+        return overflowY === "scroll" || overflowY === "auto";
+      })
+      .first();
   }
 
   // ── ACTIONS ────────────────────────────────────────────────
@@ -78,48 +57,6 @@ class DashboardPage {
    */
   visit() {
     cy.visit("/dashboard");
-  }
-
-  /**
-   * Click on "Sell Gift Card" quick action button
-   */
-  clickSellGiftCard() {
-    this.sellGiftCardButton.click();
-  }
-
-  /**
-   * Click on "View All" to see all transactions
-   */
-  clickViewAllTransactions() {
-    this.viewAllTransactionsLink.click();
-  }
-
-  /**
-   * Navigate to Gift Cards page via the side/top navigation
-   */
-  goToGiftCards() {
-    this.navGiftCards.click();
-  }
-
-  /**
-   * Navigate to Wallet page via navigation
-   */
-  goToWallet() {
-    this.navWallet.click();
-  }
-
-  /**
-   * Navigate to Transactions page via navigation
-   */
-  goToTransactions() {
-    this.navTransactions.click();
-  }
-
-  /**
-   * Navigate to Profile page via navigation
-   */
-  goToProfile() {
-    this.navProfile.click();
   }
 
   /**

@@ -37,7 +37,29 @@
 
   "localBills": {
     "phoneNumber": "07062309274",
-    "pin": "1960"
+    "pin": "1960",
+    "data": {
+      "provider": "MTN"
+    },
+    "electricity": {
+      "provider": "EKO",
+      "meterType": "Prepaid",
+      "meterNumber": "12345678901",
+      "amount": "2000"
+    },
+    "wifi": {
+      "provider": "Smile",
+      "deviceNumber": "1234567890"
+    },
+    "cable": {
+      "provider": "DSTV",
+      "deviceNumber": "1234567890"
+    },
+    "betting": {
+      "platform": "Bet9ja",
+      "customerId": "testuser123",
+      "amount": "1000"
+    }
   },
 
   "wallet": {

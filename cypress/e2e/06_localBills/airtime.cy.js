@@ -44,7 +44,7 @@ describe("Local Bills - Airtime Purchase", () => {
   // ── TEST 3 ──────────────────────────────────────────────
   it("should open the Purchase Airtime modal when Airtime card is clicked", () => {
     localBillsPage.clickAirtime();
-    localBillsPage.modalHeading.should("be.visible");
+    localBillsPage.airtimeModalHeading.should("be.visible");
     localBillsPage.networkProviderDropdown.should("be.visible");
     localBillsPage.amountInput.should("be.visible");
     localBillsPage.pinInput.should("be.visible");
@@ -56,7 +56,7 @@ describe("Local Bills - Airtime Purchase", () => {
 
     cy.fixture("testData").then((data) => {
       localBillsPage.clickAirtime();
-      localBillsPage.modalHeading.should("be.visible");
+      localBillsPage.airtimeModalHeading.should("be.visible");
 
       // Select network provider
       localBillsPage.selectNetworkProvider("MTN");

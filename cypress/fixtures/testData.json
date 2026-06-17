@@ -62,6 +62,41 @@
     }
   },
 
+  "internationalBills": {
+    "phoneNumber": "07062309274",
+    "pin": "1960",
+    "airtime": {
+      "country": "Nigeria",
+      "provider": "MTN Nigeria",
+      "amount": "5",
+      "wallet": "Naira Wallet"
+    },
+    "data": {
+      "country": "Nigeria",
+      "provider": "MTN Nigeria Data",
+      "wallet": "Naira Wallet"
+    },
+    "electricity": {
+      "country": "Nigeria",
+      "biller": "Ikeja Electricity Postpaid",
+      "meterNumber": "5345426512",
+      "amount": "5",
+      "wallet": "Naira Wallet"
+    }
+  },
+
+  "rateCalculator": {
+    "category": "Amazon",
+    "subcategory": "Amazon Physical Card ($150 to $300)",
+    "amount": "1000"
+  },
+
+  "esim": {
+    "region": "Africa",
+    "wallet": "Naira Wallet",
+    "pin": "1960"
+  },
+
   "wallet": {
     "withdrawalAmount": "5000",
     "bankName": "Access Bank",

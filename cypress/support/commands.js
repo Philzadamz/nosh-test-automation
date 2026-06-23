@@ -38,7 +38,16 @@ Cypress.Commands.add("login", (email, password) => {
  *   cy.loginWithFixture()
  */
 Cypress.Commands.add("loginWithFixture", () => {
-  cy.fixture("testData").then((data) => {
-    cy.login(data.existingUser.email, data.existingUser.password);
-  });
+  // In CI, credentials come from CYPRESS_USER_EMAIL / CYPRESS_USER_PASSWORD env vars.
+  // Locally, they fall back to the fixture file.
+  const email = Cypress.env("USER_EMAIL");
+  const password = Cypress.env("USER_PASSWORD");
+
+  if (email && password) {
+    cy.login(email, password);
+  } else {
+    cy.fixture("testData").then((data) => {
+      cy.login(data.existingUser.email, data.existingUser.password);
+    });
+  }
 });

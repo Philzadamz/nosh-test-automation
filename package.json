@@ -9,10 +9,16 @@
     "cy:run:dashboard": "cypress run --spec 'cypress/e2e/02_dashboard/**/*.cy.js'",
     "cy:run:giftcards": "cypress run --spec 'cypress/e2e/03_giftcards/**/*.cy.js'",
     "cy:run:wallet": "cypress run --spec 'cypress/e2e/04_wallet/**/*.cy.js'",
-    "cy:run:transactions": "cypress run --spec 'cypress/e2e/05_transactions/**/*.cy.js'"
+    "cy:run:transactions": "cypress run --spec 'cypress/e2e/05_transactions/**/*.cy.js'",
+    "cy:run:localbills": "cypress run --spec 'cypress/e2e/06_localBills/**/*.cy.js'",
+    "cy:run:intlbills": "cypress run --spec 'cypress/e2e/07_internationalBills/**/*.cy.js'",
+    "cy:run:esim": "cypress run --spec 'cypress/e2e/08_esim/**/*.cy.js'",
+    "cy:run:rate": "cypress run --spec 'cypress/e2e/09_rate/**/*.cy.js'",
+    "cy:run:settings": "cypress run --spec 'cypress/e2e/10_settings/**/*.cy.js'"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.9.0",
-    "cypress": "^13.17.0"
+    "cypress": "^13.17.0",
+    "cypress-mochawesome-reporter": "^4.0.2"
   }
 }

@@ -11,6 +11,9 @@
 // Import our custom commands (e.g. cy.login(), cy.loginWithFixture())
 import "./commands";
 
+// Register cypress-mochawesome-reporter support
+import "cypress-mochawesome-reporter/register";
+
 // ============================================================
 // UNCAUGHT EXCEPTION HANDLER
 // ============================================================

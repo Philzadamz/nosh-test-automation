@@ -1,6 +1,16 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  reporter: "cypress-mochawesome-reporter",
+  reporterOptions: {
+    reportDir: "cypress/reports",
+    charts: true,
+    reportPageTitle: "Nosh E2E Test Report",
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveAllAttempts: false,
+  },
+
   e2e: {
     // The base URL of the Nosh web application
     baseUrl: "https://dev.web.usenosh.com",
@@ -47,7 +57,7 @@ module.exports = defineConfig({
     },
 
     setupNodeEvents(on, config) {
-      // Add any plugins or node event listeners here if needed in the future
+      require("cypress-mochawesome-reporter/plugin")(on);
       return config;
     },
   },

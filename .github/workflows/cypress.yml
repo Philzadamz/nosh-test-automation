@@ -5,6 +5,9 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  # Run automatically every Monday at 8:00 AM UTC
+  schedule:
+    - cron: "0 8 * * 1"
   # Allow running manually from the GitHub Actions tab
   workflow_dispatch:
 
@@ -31,15 +34,13 @@ jobs:
 
       # ── 4. Run Cypress tests ──────────────────────────────
       - name: Run Cypress tests
+        id: cypress
         uses: cypress-io/github-action@v6
         with:
-          # Use the existing cy:run script (also triggers the reporter)
           command: npm run cy:run
         env:
-          # Pass credentials from GitHub Secrets (see README for setup)
           CYPRESS_USER_EMAIL: ${{ secrets.CYPRESS_USER_EMAIL }}
           CYPRESS_USER_PASSWORD: ${{ secrets.CYPRESS_USER_PASSWORD }}
-        # Keep running even if tests fail so the report still gets published
         continue-on-error: true
 
       # ── 5. Upload HTML report as artifact ─────────────────
@@ -68,3 +69,33 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: cypress/reports
           destination_dir: reports
+
+      # ── 8. Send email report ──────────────────────────────
+      - name: Send email report
+        uses: dawidd6/action-send-mail@v3
+        if: always()
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          to: ${{ secrets.MAIL_RECIPIENTS }}
+          from: Nosh E2E Tests <${{ secrets.MAIL_USERNAME }}>
+          subject: "Nosh E2E Test Report — ${{ job.status == 'success' && '✅ Passed' || '❌ Failed' }} (${{ github.run_number }})"
+          body: |
+            Nosh Automation Test Run #${{ github.run_number }}
+            ─────────────────────────────────────
+            Status   : ${{ job.status }}
+            Branch   : ${{ github.ref_name }}
+            Triggered: ${{ github.event_name }}
+            Run date : ${{ github.run_id }}
+
+            📊 View full HTML report:
+            https://philzadamz.github.io/nosh-test-automation/reports/
+
+            🔗 View run details on GitHub:
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            ─────────────────────────────────────
+            This is an automated message from GitHub Actions.
